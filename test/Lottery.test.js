@@ -14,7 +14,7 @@ beforeEach( async () => {
   lottery = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({ data: bytecode} )
     // try million wei
-    .send({ from: accounts[0], gas: '1000000' })
+    .send({ from: accounts[0], gas: '500000' })
 })
 
 describe('Lottery contract', () => {
@@ -28,7 +28,7 @@ describe('Lottery contract', () => {
       value: web3.utils.toWei('0.2', 'ether')
     })
 
-    const players = await lottery.methods.getPlayers().call({
+    const players = await lottery.methods.getArray().call({
       from: accounts[0]
     })
 
@@ -52,7 +52,7 @@ describe('Lottery contract', () => {
       value: web3.utils.toWei('0.2', 'ether')
     })
 
-    const players = await lottery.methods.getPlayers().call({
+    const players = await lottery.methods.getArray().call({
       from: accounts[0]
     })
 
