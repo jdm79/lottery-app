@@ -4,10 +4,6 @@ contract Lottery {
     address public manager;
     address[] public players;
 
-     modifier restricted() {
-        require(msg.sender == manager);
-        _;
-    }
 
     function Lottery() public {
         // global variable included any time we invoke a function
@@ -33,11 +29,19 @@ contract Lottery {
         return uint(keccak256(block.difficulty, now, players));
     }
 
-    function pickwinner() public restricted {
+
+    function pickWinner() public restricted {
         uint index = random()% players.length;
         // the address object has many methods that can be called on it
         // transfer() being just one of them
 
         players[index].transfer(this.balance);
+        players = new address[](0);
+    }
+
+       modifier restricted() {
+        require(msg.sender == manager);
+        _;
+
     }
 }
