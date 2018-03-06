@@ -19,7 +19,7 @@ contract Lottery {
     function enter() public payable {
         // this is for validation
         // won't allow function to execute unless it's satisfied
-        require(msg.value >= 0.1 ether);
+        require(msg.value > 0.1 ether);
         players.push(msg.sender);
     }
 
@@ -42,6 +42,5 @@ contract Lottery {
        modifier restricted() {
         require(msg.sender == manager);
         _;
-
     }
 }
