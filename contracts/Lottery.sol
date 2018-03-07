@@ -17,7 +17,7 @@ contract Lottery {
     }
 
     function enter() public payable {
-        // this is for validation
+        // require is for validation
         // won't allow function to execute unless it's satisfied
         require(msg.value >= 0.1 ether);
         players.push(msg.sender);
