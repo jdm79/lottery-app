@@ -76,4 +76,16 @@ describe('Lottery contract', () => {
       assert(err)
     }
   })
+
+  it('only manager can call pick winner', async () => {
+    try{
+      await lottery.methods.pickWinner().send({
+        from: accounts[1],
+      })
+      // add assert in case the async/await hangs
+      assert(false)
+    } catch (err) {
+      assert(err)
+    }
+  })
 })
